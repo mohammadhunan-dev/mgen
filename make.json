@@ -1,0 +1,81 @@
+{
+    "name": "$name",
+    "address": "$address",
+    "phone": {
+        "$integer": {
+            "min": 3471111111,
+            "max": 8009999999
+        }
+    },
+    "ssn": {
+        "$integer": {
+            "min": 111111111,
+            "max": 999999999
+        }
+    },
+    "ssnLast4": "0000",
+    "bloodType": {
+        "$choose": {
+            "from": [
+                "O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"
+            ],
+            "weight": [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+            ]
+        }
+    },
+    "insurance": {
+        "policyNumber": {
+            "$integer": {
+                "min": 11111,
+                "max": 99999
+            }
+        },
+        "provider": {
+            "$choose": {
+                "from": [
+                    "MedSilver Insure",
+                    "HealthAid Pro",
+                    "Caresimple Co",
+                    "HealthConnect Insure"
+                ],
+                "weights": [
+                    1,
+                    1,
+                    1,
+                    1
+                ]
+            }
+        }
+    },
+    "medicalRecords": {
+        "$array": {
+            "number": "{{chance.natural({min: 1, max: 3})}}",
+            "of": {
+                "bloodPressure": {
+                    "$choose": {
+                        "from": [
+                            "120/80",
+                            "115/75",
+                            "120/70"
+                        ],
+                        "weight": [
+                            1,
+                            1,
+                            1
+                        ]
+                    }
+                },
+                "bodyWeight": "{{chance.natural({min: 160, max: 180})}}",
+                "heartRate": "{{chance.natural({min: 70, max: 100})}}"
+            }
+        }
+    }
+}
